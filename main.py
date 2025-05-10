@@ -1,5 +1,6 @@
 import time
 from pokemon import Pokemon
+import random
 
 #game progress
 game_level = 1
@@ -42,31 +43,32 @@ def main():
     print('Welcome to the Pokemon Style Game!\n'
           'Please type the name of your pokemon:\n'
           'Charmander, Squirtle, or Bulbasaur')
-    my_pokemon = input('Pokemon: ').title()
+    my_pokemon_name = input('Pokemon: ').title()
+    my_pokemon = Pokemon(my_pokemon_name)
 
 
     #checks if the user selected a listed Pokemon
     while True:
-        if my_pokemon.title() == 'Charmander' or my_pokemon.title() == 'Squirtle' or my_pokemon.title() == 'Bulbasaur':
+        if my_pokemon_name.title() == 'Charmander' or my_pokemon_name.title() == 'Squirtle' or my_pokemon_name.title() == 'Bulbasaur':
             break
         else:
             print("\nSorry that response is unable to be interpreted, please type one of the pokemon listed above.")
-            my_pokemon = input('Pokemon: ').title()
+            my_pokemon_name = input('Pokemon: ').title()
 
 
     # user selects a nickname for their Pokemon
-    yn_nick = input(f'\nDo you want to name your {my_pokemon}? y/n ')
+    yn_nick = input(f'\nDo you want to name your {my_pokemon_name}? y/n ')
     nick = ''
     while True:
         if yn_nick.lower() == 'y':
-            nick = input(f'\nWhat do you want to name your {my_pokemon}? ')
+            nick = input(f'\nWhat do you want to name your {my_pokemon_name}? ')
             break
         elif yn_nick.lower() == 'n':
-            nick = my_pokemon
+            nick = my_pokemon_name
             break
         else:
             print("\nSorry that response is unable to be interpreted, please respond with 'y' or 'n'")
-            yn_nick = input(f'Do you want to name your {my_pokemon}? y/n ')
+            yn_nick = input(f'Do you want to name your {my_pokemon_name}? y/n ')
         time.sleep(1)
 
 
@@ -101,13 +103,55 @@ def main():
 
 
         if battle:
-
+            #figures out what opponent you are fighting
             if game_level == 1:
                 foe = 'James'
-                foe_pokemon = Pokemon('Squirtle', 2)
-            if game_level == 2:
+                foe_pokemon = Pokemon('Koffing', 2)
+            elif game_level == 2:
                 foe = 'Jessie'
-                foe_pokemon = Pokemon('Charmander', 4)
+                foe_pokemon = Pokemon('Ekans', 4)
+            elif game_level == 3:
+                foe = 'Meowth'
+                foe_pokemon = Pokemon('Meowth', 5)
+            elif game_level == 4:
+                foe = 'Wobbuffet'
+                foe_pokemon = Pokemon('Wobbuffet', 8)
+            elif game_level == 5:
+                foe = 'Brock'
+                foe_pokemon = Pokemon('Onyx', 13)
+            else:
+                freeplay_foe_list = ['Misty', 'Nurse Joy', 'Officer Jenny', 'Proffessor Oak']
+                freeplay_pokemon_list = ['Gyarados', 'Sandslash', 'Lapras', 'Machamp', 'Golbat', 'Snorlax', 'Primeape']
+                foe = freeplay_foe_list[random.randint(4)-1]
+                foe_pokemon = Pokemon(freeplay_foe_list[random.randint(7) - 1], 8)
+        
+        def print_battle_menu():
+            print(  f'1) Attack: you can attack your opponents pokemon\n'
+                    f'2) Block: You can attempt to block your opponents attack (will block a Super Attack 100% of the time)\n'
+                    f'3) Heal: You can heal your pokemon for a small amount of health\n'
+                    f'4) Charge: Gives you 1 more Super Charge\n'
+                    f'5) Super Attack: Attacks and wipes out your opponent (uses and requires 3 Charges)')
+            local_battle_selection = input('What would you like to do? ')
+            return local_battle_selection
+            
+            
+                
+            #actual battle scenario
+            print(f"You are now battling {foe}'s {foe_pokemon}!")
+
+            while battle:
+                my_pokemon.block_status = False
+                battle_selection = print_battle_menu()
+
+                if battle_selection == 1:
+                    my_pokemon.attack(foe_pokemon)
+                elif battle_selection == 2:
+                    my_pokemon.block_status == True
+
+
+
+
+
 
 
 

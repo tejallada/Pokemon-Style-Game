@@ -8,10 +8,16 @@ class Pokemon:
         self.level = level
         self.health = 100 + (50 * level)
         self.experience = 0
+        self.block_status = False
 
     #if the pokemon has enough xp then the pokemon should level up
     def level_up(self):
-
+        while self.experience >= 100:
+            self.level += 1
+            self.experience = self.experience - 100
+            print('------\n'
+                  f'{name} has leveled up!'
+                  '------\n')
 
     #if the pokemon attacks
     def attack(self, other):
