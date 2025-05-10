@@ -15,3 +15,4 @@ class Pokemon:
         #the other pokemon should have a random
         #chance that it gets hit here based on the level
 #       of your pokemon and the level of that pokemon
+
