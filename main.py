@@ -1,4 +1,7 @@
+import time
 
+
+#prints the instructions for the user
 def print_instructions():
     print(f'You have alreqdy selected your pokemon.\n'
           f'''In this game your pokemon does not change any of your abilities.\n'''
@@ -18,7 +21,7 @@ def main():
 
 
     # initial welcome message
-    print('Welcome to the Pokemon Style Game!\n '
+    print('Welcome to the Pokemon Style Game!\n'
           'Please type the name of your pokemon:\n'
           'Charmander, Squirtle, or Bulbasaur')
     my_pokemon = input('Pokemon: ').title()
@@ -47,6 +50,7 @@ def main():
         else:
             print("\nSorry that response is unable to be interpreted, please respond with 'y' or 'n'")
             yn_nick = input(f'Do you want to name your {my_pokemon}? y/n ')
+        time.sleep(0.2)
 
 
 #Introduction steps are complete now to move on to the actual game
@@ -55,7 +59,9 @@ def main():
         print('\n\n\nGreetings traveler and welcome to the Pokemon-Style Game!\n'
               'This game is a simple version based off of the original pokemon games on the Nintendo DS\n'
               '_______________________________________________________\n')
+        time.sleep(1)
         print_instructions()
+        time.sleep(5)
         break
 
 
