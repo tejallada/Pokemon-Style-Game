@@ -7,7 +7,11 @@ class Pokemon:
         self.name = name
         self.type = type
         self.level = 1
-        fight_options = [attack, dodge, heal]
+        self.experience
+
+    #if the pokemon has enough xp then the pokemon should level up
+    def level_up(self):
+
 
     #if the pokemon attacks
     def attack(self, other):
