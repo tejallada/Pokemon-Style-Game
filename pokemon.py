@@ -1,5 +1,5 @@
 #This file contains the Pokemon class which is a class that gives the attributes of a pokemon
-
+import random
 class Pokemon:
 
     #initializes the pokemon
@@ -21,8 +21,6 @@ class Pokemon:
 
     #if the pokemon attacks
     def attack(self, other):
-
-        #the other pokemon should have a random
-        #chance that it gets hit here based on the level
-#       of your pokemon and the level of that pokemon
+        if not self.block_status:
+            other.health -= random.randint(10, 75) * self.level
 

@@ -145,6 +145,8 @@ def main():
 
                 if battle_selection == 1:
                     my_pokemon.attack(foe_pokemon)
+                    print(f'{nick} attacked {foe_pokemon}!')
+                    print(f'{foe_pokemon} has only {foe_pokemon.health} remaining')
                 elif battle_selection == 2:
                     my_pokemon.block_status == True
 
