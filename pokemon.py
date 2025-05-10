@@ -3,11 +3,11 @@
 class Pokemon:
 
     #initializes the pokemon
-    def __init__(self, name, type):
+    def __init__(self, name, level = 1):
         self.name = name
-        self.type = type
-        self.level = 1
-        self.experience
+        self.level = level
+        self.health = 100 + (50 * level)
+        self.experience = 0
 
     #if the pokemon has enough xp then the pokemon should level up
     def level_up(self):
