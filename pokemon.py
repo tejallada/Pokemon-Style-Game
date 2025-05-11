@@ -25,3 +25,7 @@ class Pokemon:
         if not self.block_status:
             other.health -= random.randint(10, 75) * self.level
 
+    def heal(self):
+        heal_amount = random.randint(3) * 10 * self.level//2
+        self.health += heal_amount
+
