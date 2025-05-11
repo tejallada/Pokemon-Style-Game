@@ -142,6 +142,11 @@ def main():
             while battle:
                 my_pokemon.block_status = False
                 battle_selection = print_battle_menu()
+                if foe_pokemon.charge_count >= 3:
+                    if random.randint(5) >= 2:
+                        foe_move_selection = 4
+                    else:
+                        foe_move_selection = random.randint(3)
 
                 if battle_selection == 1:
                     my_pokemon.attack(foe_pokemon)
@@ -149,6 +154,14 @@ def main():
                     print(f'{foe_pokemon} has only {foe_pokemon.health} remaining')
                 elif battle_selection == 2:
                     my_pokemon.block_status == True
+                elif battle_selection == 3:
+                    my_pokemon.charge_count += 1
+                elif battle_selection == 4:
+                    if my_pokemon.charge_count >= 3:
+                        if not foe_pokemon.block_status:
+                            foe_pokemon.health = 0
+                        else:
+                            print(f"{foe}'s {foe_pokemon} had a block ready!")
 
 
 

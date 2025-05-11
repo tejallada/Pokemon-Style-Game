@@ -9,6 +9,7 @@ class Pokemon:
         self.health = 100 + (50 * level)
         self.experience = 0
         self.block_status = False
+        self.charge_count = 0
 
     #if the pokemon has enough xp then the pokemon should level up
     def level_up(self):
