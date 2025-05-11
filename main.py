@@ -144,24 +144,51 @@ def main():
                 battle_selection = print_battle_menu()
                 if foe_pokemon.charge_count >= 3:
                     if random.randint(5) >= 2:
-                        foe_move_selection = 4
+                        foe_move_selection = 5
                     else:
-                        foe_move_selection = random.randint(3)
+                        foe_move_selection = random.randint(4)
 
+
+                #your battle selection
                 if battle_selection == 1:
                     my_pokemon.attack(foe_pokemon)
                     print(f'{nick} attacked {foe_pokemon}!')
-                    print(f'{foe_pokemon} has only {foe_pokemon.health} remaining')
+                    print(f'{foe_pokemon} has only {foe_pokemon.health} remaining.')
                 elif battle_selection == 2:
                     my_pokemon.block_status == True
                 elif battle_selection == 3:
-                    my_pokemon.charge_count += 1
+                    my_pokemon.heal()
                 elif battle_selection == 4:
+                    my_pokemon.charge_count += 1
+                elif battle_selection == 5:
                     if my_pokemon.charge_count >= 3:
-                        if not foe_pokemon.block_status:
+                        if foe_move_selection != 2:
                             foe_pokemon.health = 0
                         else:
                             print(f"{foe}'s {foe_pokemon} had a block ready!")
+                time.sleep(5)
+
+
+            #foe's battle selection
+            if foe_move_selection == 1:
+                foe_pokemon.attack(my_pokemon)
+                print(f'{foe_pokemon} attacked {my_pokemon}!')
+                print(f'{nick} has only {my_pokemon.health} remaining.')
+            elif foe_move_selection == 3:
+                foe_pokemon.heal()
+            elif foe_move_selection == 4:
+                foe_pokemon.charge_count += 1
+            elif foe_move_selection == 5:
+                if foe_pokemon.charge_count >= 3:
+                    if my_move_selection != 2:
+                        my_pokemon.health = 0
+                    else:
+                        print(f"{my_pokemon} had a block ready!")
+
+
+
+
+
 
 
 
