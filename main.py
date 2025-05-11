@@ -31,7 +31,7 @@ def print_menu():
           '2) Battle\n'
           '3) Exit the program\n')
     output = input('Type your selection here: ')
-    return output
+    return int(output)
 
 
 def main():
@@ -73,14 +73,15 @@ def main():
 
 
 #Introduction steps are complete now to move on to the actual game
+    print('\n\n\nGreetings traveler and welcome to the Pokemon-Style Game!\n'
+          'This game is a simple version based off of the original pokemon games on the Nintendo DS\n'
+          '_______________________________________________________\n')
+    time.sleep(2)
 
     while not freeplay_active:
         battle = False
 
-        print('\n\n\nGreetings traveler and welcome to the Pokemon-Style Game!\n'
-              'This game is a simple version based off of the original pokemon games on the Nintendo DS\n'
-              '_______________________________________________________\n')
-        time.sleep(2)
+
         print_instructions()
         time.sleep(5)
         print('')
@@ -101,7 +102,8 @@ def main():
         else:
             print('\n\n\n')
 
-
+        foe = ''
+        foe_pokemon = ''
         if battle:
             #figures out what opponent you are fighting
             if game_level == 1:
@@ -131,7 +133,7 @@ def main():
                     f'3) Heal: You can heal your pokemon for a small amount of health\n'
                     f'4) Charge: Gives you 1 more Super Charge\n'
                     f'5) Super Attack: Attacks and wipes out your opponent (uses and requires 3 Charges)')
-            local_battle_selection = input('What would you like to do? ')
+            local_battle_selection = int(input('What would you like to do? '))
             return local_battle_selection
             
             
@@ -169,21 +171,21 @@ def main():
                 time.sleep(5)
 
 
-            #foe's battle selection
-            if foe_move_selection == 1:
-                foe_pokemon.attack(my_pokemon)
-                print(f'{foe_pokemon} attacked {my_pokemon}!')
-                print(f'{nick} has only {my_pokemon.health} remaining.')
-            elif foe_move_selection == 3:
-                foe_pokemon.heal()
-            elif foe_move_selection == 4:
-                foe_pokemon.charge_count += 1
-            elif foe_move_selection == 5:
-                if foe_pokemon.charge_count >= 3:
-                    if my_move_selection != 2:
-                        my_pokemon.health = 0
-                    else:
-                        print(f"{my_pokemon} had a block ready!")
+                #foe's battle selection
+                if foe_move_selection == 1:
+                    foe_pokemon.attack(my_pokemon)
+                    print(f'{foe_pokemon} attacked {my_pokemon}!')
+                    print(f'{nick} has only {my_pokemon.health} remaining.')
+                elif foe_move_selection == 3:
+                    foe_pokemon.heal()
+                elif foe_move_selection == 4:
+                    foe_pokemon.charge_count += 1
+                elif foe_move_selection == 5:
+                    if foe_pokemon.charge_count >= 3:
+                        if my_move_selection != 2:
+                            my_pokemon.health = 0
+                        else:
+                            print(f"{my_pokemon} had a block ready!")
 
 
 
