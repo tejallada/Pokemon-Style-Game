@@ -172,18 +172,26 @@ def main():
                 #foe's battle selection
                 if foe_move_selection == 1:
                     foe_pokemon.attack(my_pokemon)
-                    print(f'{foe_pokemon.name} attacked {nick}!')
-                    print(f'{nick} has only {my_pokemon.health} remaining.')
+                    print(f'{foe_pokemon.name} ATTACKED {nick}!')
+                    print(f'{nick} now has only {my_pokemon.health} HP remaining.')
                 elif foe_move_selection == 3:
                     foe_pokemon.heal()
+                    print(f'{foe_pokemon.name} HEALED themselves!')
+                    print(f'{foe_pokemon.name} now has {foe_pokemon.health} HP remaining')
                 elif foe_move_selection == 4:
                     foe_pokemon.charge_count += 1
+                    print(f'{foe_pokemon.name} has CHARGED themselves!')
+                    print(f"{foe_pokemon.name} now has {foe_pokemon.charge_count}'s remaining")
                 elif foe_move_selection == 5:
                     if foe_pokemon.charge_count >= 3:
+                        print(f'{foe_pokemon.name} attacked {nick} with a SUPER ATTACK!')
                         if battle_selection == 2:
                             my_pokemon.health = 0
+                            print(f'Critical Hit! {nick} has fainted!')
+                            battle = False
                         else:
-                            print(f"{my_pokemon.name} had a block ready!")
+                            print(f"{my_pokemon.name} had a BLOCK ready!")
+
 
 
 
