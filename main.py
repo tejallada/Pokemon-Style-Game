@@ -5,11 +5,15 @@ import random
 #game progress
 game_level = 1
 
-
-
-
-
-
+#prints the battle menu for the user
+def print_battle_menu():
+    print(f'1) Attack: you can attack your opponents pokemon\n'
+          f'2) Block: You can attempt to block your opponents attack (will block a Super Attack 100% of the time)\n'
+          f'3) Heal: You can heal your pokemon for a small amount of health\n'
+          f'4) Charge: Gives you 1 more Super Charge\n'
+          f'5) Super Attack: Attacks and wipes out your opponent (uses and requires 3 Charges)')
+    local_battle_selection = int(input('What would you like to do? '))
+    return local_battle_selection
 
 
 #prints the instructions for the user
@@ -124,38 +128,32 @@ def main():
             else:
                 freeplay_foe_list = ['Misty', 'Nurse Joy', 'Officer Jenny', 'Proffessor Oak']
                 freeplay_pokemon_list = ['Gyarados', 'Sandslash', 'Lapras', 'Machamp', 'Golbat', 'Snorlax', 'Primeape']
-                foe = freeplay_foe_list[random.randint(4)-1]
-                foe_pokemon = Pokemon(freeplay_foe_list[random.randint(7) - 1], 8)
-        
-        def print_battle_menu():
-            print(  f'1) Attack: you can attack your opponents pokemon\n'
-                    f'2) Block: You can attempt to block your opponents attack (will block a Super Attack 100% of the time)\n'
-                    f'3) Heal: You can heal your pokemon for a small amount of health\n'
-                    f'4) Charge: Gives you 1 more Super Charge\n'
-                    f'5) Super Attack: Attacks and wipes out your opponent (uses and requires 3 Charges)')
-            local_battle_selection = int(input('What would you like to do? '))
-            return local_battle_selection
+                foe = freeplay_foe_list[random.randint(1,4)-1]
+                foe_pokemon = Pokemon(freeplay_foe_list[random.randint(1,7) - 1], 8)
             
             
                 
             #actual battle scenario
-            print(f"You are now battling {foe}'s {foe_pokemon}!")
+            print(f"\nYou are now battling {foe}'s {foe_pokemon.name}!\n")
 
             while battle:
+                foe_move_selection = 1
                 my_pokemon.block_status = False
                 battle_selection = print_battle_menu()
                 if foe_pokemon.charge_count >= 3:
-                    if random.randint(5) >= 2:
+                    if random.randint(1, 5) >= 2:
                         foe_move_selection = 5
                     else:
-                        foe_move_selection = random.randint(4)
+                        foe_move_selection = random.randint(1,4)
+                else:
+                    foe_move_selection = random.randint(1,4)
 
 
                 #your battle selection
                 if battle_selection == 1:
                     my_pokemon.attack(foe_pokemon)
-                    print(f'{nick} attacked {foe_pokemon}!')
-                    print(f'{foe_pokemon} has only {foe_pokemon.health} remaining.')
+                    print(f'{nick} attacked {foe_pokemon.name}!')
+                    print(f'{foe_pokemon.name} has only {foe_pokemon.health} remaining.')
                 elif battle_selection == 2:
                     my_pokemon.block_status == True
                 elif battle_selection == 3:
@@ -167,14 +165,14 @@ def main():
                         if foe_move_selection != 2:
                             foe_pokemon.health = 0
                         else:
-                            print(f"{foe}'s {foe_pokemon} had a block ready!")
+                            print(f"{foe}'s {foe_pokemon.name} had a block ready!")
                 time.sleep(5)
 
 
                 #foe's battle selection
                 if foe_move_selection == 1:
                     foe_pokemon.attack(my_pokemon)
-                    print(f'{foe_pokemon} attacked {my_pokemon}!')
+                    print(f'{foe_pokemon.name} attacked {nick}!')
                     print(f'{nick} has only {my_pokemon.health} remaining.')
                 elif foe_move_selection == 3:
                     foe_pokemon.heal()
@@ -182,10 +180,10 @@ def main():
                     foe_pokemon.charge_count += 1
                 elif foe_move_selection == 5:
                     if foe_pokemon.charge_count >= 3:
-                        if my_move_selection != 2:
+                        if battle_selection == 2:
                             my_pokemon.health = 0
                         else:
-                            print(f"{my_pokemon} had a block ready!")
+                            print(f"{my_pokemon.name} had a block ready!")
 
 
 
