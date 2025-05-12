@@ -26,6 +26,6 @@ class Pokemon:
             other.health -= random.randint(10, 75) * self.level
 
     def heal(self):
-        heal_amount = random.randint(3) * 10 * self.level//2
+        heal_amount = random.randint(1,3) * 10 * self.level//2
         self.health += heal_amount
 
