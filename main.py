@@ -158,6 +158,8 @@ def main():
                     my_pokemon.block_status == True
                 elif battle_selection == 3:
                     my_pokemon.heal()
+                    print(f'{my_pokemon.name} HEALED themselves!')
+                    print(f'{my_pokemon.name} now has {my_pokemon.health} HP remaining.')
                 elif battle_selection == 4:
                     my_pokemon.charge_count += 1
                 elif battle_selection == 5:
@@ -177,11 +179,11 @@ def main():
                 elif foe_move_selection == 3:
                     foe_pokemon.heal()
                     print(f'{foe_pokemon.name} HEALED themselves!')
-                    print(f'{foe_pokemon.name} now has {foe_pokemon.health} HP remaining')
+                    print(f'{foe_pokemon.name} now has {foe_pokemon.health} HP remaining.')
                 elif foe_move_selection == 4:
                     foe_pokemon.charge_count += 1
                     print(f'{foe_pokemon.name} has CHARGED themselves!')
-                    print(f"{foe_pokemon.name} now has {foe_pokemon.charge_count}'s remaining")
+                    print(f"{foe_pokemon.name} now has {foe_pokemon.charge_count} charges!")
                 elif foe_move_selection == 5:
                     if foe_pokemon.charge_count >= 3:
                         print(f'{foe_pokemon.name} attacked {nick} with a SUPER ATTACK!')
@@ -214,7 +216,7 @@ def main():
 
 
 
-            #runs the code
+        #runs the code
 if __name__ == '__main__':
     main()
     

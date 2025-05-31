@@ -22,8 +22,10 @@ class Pokemon:
 
     #if the pokemon attacks
     def attack(self, other):
-        if not self.block_status:
+        if not other.block_status:
             other.health -= random.randint(10, 75) * self.level
+        else:
+            print(f"{other.name} has blocked {self.name}'s attack!")
 
     def heal(self):
         heal_amount = random.randint(1,3) * 10 * self.level//2
